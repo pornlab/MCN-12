@@ -1,0 +1,79 @@
+Техническое задание
+
+
+Имеется Raspberry Pi 3. К ней подключены две сборки микросхем: 74HC165 и 74HC595 по SPI. К микросхемам подключены "антивандальные кнопки", типа https://www.ledera.ru/node/ImgFolder/1508841131.jpg
+
+Устройство представляет собой стенд, который позволяет клиенту выбрать плитку из представленных на стенде образцов. Кнопки предназначены для изменения активной комнаты, установки плитки на стену и пол. В зависимости от выбранного режима, меняется изображение на мониторе (Изображения будут выданы немного позже и будут располагаться согласно указанному ниже формату). Система должна масштабироваться, указанием большего количества плиток и комнат в CONFIG.TXT. Через
+
+	Инициализация
+		• При включении устройства, необходимо запустить программу в режиме полного экрана
+		• На экране отображается дефолтное изображение из директории default
+
+	Работа приложения
+		• При нажатии на кнопку с типом floor (12 кнопок), загружается изображение из директории с активным типом floor
+		• Аналогичная работа с wall (12 кнопок)
+		• Аналогичная работа с room (3 кнопки)
+		• На кнопках с активным режимом включены светодиоды. На всех других выключены
+		• Если ни одна кнопка не была нажата в течении минуты, включается ролик из директории videos
+
+	Подготовка к сдаче проекта
+		• Вынести основные настройки в файл CONFIG.txt
+		• Оформить README.md
+		• Залить проект на предоставленный репозиторий
+
+
+структура проекта:
+	src
+		README.md
+		CONFIG.txt
+			COUNT_ROOMS=3
+			COUNT_TILES=12
+			DELAY_PREVIEW=2
+		main.py / main.cpp
+	videos
+		VID_1.mp4
+	images
+		default IMG_default.jpg
+		kitchen
+			wall
+				IMG_kitchen_wall_1
+				IMG_kitchen_wall_2
+				IMG_kitchen_wall_3
+				IMG_kitchen_wall_4
+				...
+			floor
+				IMG_kitchen_floor_1
+				IMG_kitchen_floor_2
+				IMG_kitchen_floor_3
+				IMG_kitchen_floor_4
+				...
+
+		bedroom
+			wall
+				IMG_bedroom_wall_1
+				IMG_bedroom_wall_2
+				IMG_bedroom_wall_3
+				IMG_bedroom_wall_4
+				...
+			floor
+				IMG_bedroom_floor_1
+				IMG_bedroom_floor_2
+				IMG_bedroom_floor_3
+				IMG_bedroom_floor_4
+				...
+
+		toilet
+			wall
+				IMG_toilet_wall_1
+				IMG_toilet_wall_2
+				IMG_toilet_wall_3
+				IMG_toilet_wall_4
+				...
+			floor
+				IMG_toilet_floor_1
+				IMG_toilet_floor_2
+				IMG_toilet_floor_3
+				IMG_toilet_floor_4
+				...
+
+'IMG_{комната}{стена/пол}{номер плитки}'
