@@ -1,14 +1,17 @@
-import time
-import threading
 from spi_lib import SPI
+import threading
+import pygame
 
 
 class Routine:
     def __init__(self):
-        pass
+        self.spi = SPI()
+        self.image = 0
+        self.process = threading.Thread(target=self.routine, args=(None, ))
+        self.process.start()
 
-    def start(self):
-        pass
-
-
-a = SPI()
+    def routine(self, a):
+        while 1:
+            self.image = self.spi.process()
+            if self.image != 0:
+                pass

@@ -1,4 +1,6 @@
 import spidev
+import math
+
 
 class SPI:
     def __init__(self):
@@ -12,12 +14,20 @@ class SPI:
         self.modules = self.config['modules']
 
         self.read_cmd = [0] * self.modules
-        self.set_cmd = [0] * self.modules
         pass
 
+    def sum(self):
+        a = 0
+        for i in range(len(self.read_cmd)):
+            a += self.read_cmd[i]
+        return a
 
-    def read_chip(self, pin):
-        pass
-
-    def reset_chip(self):
-        pass
+    def process(self):
+        image_num = 0
+        self.read_cmd = self.spi.readbytes(self.modules)
+        if self.sum() > 0:
+            self.spi.writebytes(self.read_cmd)
+            for i in range(self.modules):
+                if self.read_cmd[i] != 0:
+                    image_num = i + math.log2(self.read_cmd[i])
+        return image_num
