@@ -1,4 +1,4 @@
-#import spidev
+import spidev
 
 class SPI:
     def __init__(self, bus=0, device=1):
