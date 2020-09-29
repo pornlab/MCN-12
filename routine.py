@@ -14,4 +14,5 @@ class Routine:
         while 1:
             self.image = self.spi.process()
             if self.image != 0:
+                print(self.image)
                 pass
