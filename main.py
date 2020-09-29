@@ -11,4 +11,3 @@ if __name__ == "__main__":
 
     from routine import Routine
     r = Routine()
-    r.start()
