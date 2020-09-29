@@ -1,0 +1,14 @@
+{'spi': {
+'bus': 0,
+'device': 1
+'max_speed_hz': 1000000,
+'spi_mode': 0
+},
+'chip': {
+'input': 2,
+'output': 2
+},
+'images': 100,
+'floor': 12,
+'wall': 12,
+'room': 3}
