@@ -29,19 +29,19 @@ class SPI:
 
     def process(self):
         image_num = 0
-        self.IO.output(self.cs, 0)
+        self.IO.output(self.cs, 1)
         time.sleep(0.1)
         self.read_cmd = self.spi.readbytes(self.modules)
         print(self.read_cmd)
         time.sleep(0.1)
-        self.IO.output(self.cs, 1)
+        self.IO.output(self.cs, 0)
         time.sleep(0.1)
         if self.sum() > 0:
-            self.IO.output(self.cs, 0)
+            self.IO.output(self.cs, 1)
             time.sleep(0.1)
             self.spi.writebytes(self.read_cmd)
             time.sleep(0.1)
-            self.IO.output(self.cs, 1)
+            self.IO.output(self.cs, 0)
             time.sleep(0.1)
             for i in range(self.modules):
                 if self.read_cmd[i] != 0:
