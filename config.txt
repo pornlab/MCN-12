@@ -2,7 +2,8 @@
 'bus': 0,
 'device': 1,
 'max_speed_hz': 1000000,
-'spi_mode': 0
+'spi_mode': 0,
+'cs_pin': 16
 },
 'modules': 2,
 'images': 100,

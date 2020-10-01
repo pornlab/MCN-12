@@ -1,6 +1,6 @@
 import spidev
 import math
-
+import RPi.GPIO as IO
 
 class SPI:
     def __init__(self):
@@ -12,9 +12,13 @@ class SPI:
         self.spi.max_speed_hz = self.config['spi']['max_speed_hz']
         self.spi.mode = self.config['spi']['spi_mode']
         self.modules = self.config['modules']
-
+        self.cs = self.config['spi']['cs_pin']
+        self.IO = IO()
+        self.IO.setmode(IO.BCM)
+        self.IO.setwarnings(False)
+        self.IO.setup(self.cs, 0)
+        self.IO.output(self.cs, 1)
         self.read_cmd = [0] * self.modules
-        pass
 
     def sum(self):
         a = 0
@@ -24,9 +28,13 @@ class SPI:
 
     def process(self):
         image_num = 0
+        self.IO.output(self.cs, 0)
         self.read_cmd = self.spi.readbytes(self.modules)
+        self.IO.output(self.cs, 1)
         if self.sum() > 0:
+            self.IO.output(self.cs, 0)
             self.spi.writebytes(self.read_cmd)
+            self.IO.output(self.cs, 1)
             for i in range(self.modules):
                 if self.read_cmd[i] != 0:
                     image_num = i + math.log2(self.read_cmd[i])
