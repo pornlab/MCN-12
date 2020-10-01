@@ -13,7 +13,7 @@ class SPI:
         self.spi.mode = self.config['spi']['spi_mode']
         self.modules = self.config['modules']
         self.cs = self.config['spi']['cs_pin']
-        self.IO = IO()
+        self.IO = IO
         self.IO.setmode(IO.BCM)
         self.IO.setwarnings(False)
         self.IO.setup(self.cs, 0)
