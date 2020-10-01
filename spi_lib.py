@@ -45,5 +45,5 @@ class SPI:
             time.sleep(0.1)
             for i in range(self.modules):
                 if self.read_cmd[i] != 0:
-                    image_num = i + math.log2(self.read_cmd[i])
+                    image_num = i + math.log2(sum(self.read_cmd[i]))
         return image_num
