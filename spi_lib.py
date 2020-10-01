@@ -30,6 +30,7 @@ class SPI:
         image_num = 0
         self.IO.output(self.cs, 0)
         self.read_cmd = self.spi.readbytes(self.modules)
+        print(self.read_cmd)
         self.IO.output(self.cs, 1)
         if self.sum() > 0:
             self.IO.output(self.cs, 0)
