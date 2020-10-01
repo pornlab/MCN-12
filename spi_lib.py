@@ -17,7 +17,7 @@ class SPI:
         self.IO.setmode(IO.BCM)
         self.IO.setwarnings(False)
         self.IO.setup(self.cs, 0)
-        self.IO.output(self.cs, 1)
+        self.IO.output(self.cs, 0)
         self.read_cmd = [0] * self.modules
 
     def sum(self):
@@ -28,14 +28,14 @@ class SPI:
 
     def process(self):
         image_num = 0
-        self.IO.output(self.cs, 0)
+        self.IO.output(self.cs, 1)
         self.read_cmd = self.spi.readbytes(self.modules)
         print(self.read_cmd)
-        self.IO.output(self.cs, 1)
+        self.IO.output(self.cs, 0)
         if self.sum() > 0:
-            self.IO.output(self.cs, 0)
-            self.spi.writebytes(self.read_cmd)
             self.IO.output(self.cs, 1)
+            self.spi.writebytes(self.read_cmd)
+            self.IO.output(self.cs, 0)
             for i in range(self.modules):
                 if self.read_cmd[i] != 0:
                     image_num = i + math.log2(self.read_cmd[i])
