@@ -3,7 +3,7 @@
 'device': 0,
 'max_speed_hz': 1000000,
 'spi_mode': 0,
-'cs_pin': 16
+'cs_pin': 22
 },
 'modules': 2,
 'images': 100,
