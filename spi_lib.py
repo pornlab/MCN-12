@@ -24,7 +24,7 @@ class SPI:
     def sum(self):
         a = 0
         for i in range(len(self.read_cmd)):
-            a += self.read_cmd[i]
+            a += self.read_cmd[i] * (2 ** (8 * i))
         return a
 
     def process(self):
