@@ -10,7 +10,7 @@ if __name__ == "__main__":
     try:
         import RPi.GPIO as IO
     except:
-        os.system('pip3 install RPi')
+        os.system('pip3 install RPi.GPIO')
         import RPi.GPIO as IO
 
     time.sleep(1)

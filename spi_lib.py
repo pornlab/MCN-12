@@ -42,4 +42,4 @@ class SPI:
             for i in range(self.modules):
                 if self.read_cmd[i] != 0:
                     image_num = 1 + (i * 8) + math.log2(sum(self.read_cmd))
-        return image_num
+        return int(image_num)
