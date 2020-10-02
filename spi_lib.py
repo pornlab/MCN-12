@@ -20,7 +20,7 @@ class SPI:
         self.IO.setup(self.cs, 0)
         self.IO.output(self.cs, 0)
         self.read_cmd = [0] * self.modules
-        self.timeout = 0
+        self.timeout = self.config['timeout']
         self.image_num = 0
 
     def sum(self):
@@ -30,14 +30,14 @@ class SPI:
         return a
 
     def process(self):
-        self.timeout += 1
+        self.timeout -= 1
         self.IO.output(self.cs, 1)
         time.sleep(0.1)
         self.read_cmd = self.spi.readbytes(self.modules)
         print(self.read_cmd)
         self.IO.output(self.cs, 0)
         if self.sum() > 0:
-            self.timeout = 0
+            self.timeout = self.config['timeout']
             self.IO.output(self.cs, 1)
             time.sleep(0.1)
             self.spi.writebytes(self.read_cmd)
@@ -45,6 +45,6 @@ class SPI:
             for i in range(self.modules):
                 if self.read_cmd[i] != 0:
                     self.image_num = 1 + (i * 8) + math.log2(sum(self.read_cmd))
-        if self.timeout == 1200:
+        if self.timeout == 0:
             self.image_num = 0
         return int(self.image_num)

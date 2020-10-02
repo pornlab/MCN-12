@@ -9,4 +9,5 @@
 'images': 100,
 'floor': 12,
 'wall': 12,
-'room': 3}
+'room': 3,
+'timeout': 10}
