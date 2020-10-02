@@ -14,7 +14,7 @@ class Routine:
     def routine(self, a):
         while 1:
             self.image = self.spi.process()
+            self.graph.load_image(self.image)
             if self.image != 0:
                 print(self.image)
-                self.graph.load_image(self.image)
                 pass
