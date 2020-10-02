@@ -11,6 +11,7 @@ class Graphics:
         self.scr_h = self.display.Info().current_h
         self.screen = self.display.set_mode(size=[self.scr_w, self.scr_h], flags=pygame.FULLSCREEN, display=0)
         self.screen.fill([0, 0, 0])
+        print(pygame.image.get_extended())
 
     def load_image(self, image_num):
         img = pygame.image.load(os.path.join('images', '{}.jpg'.format(image_num)))
