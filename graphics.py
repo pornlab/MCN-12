@@ -14,7 +14,7 @@ class Graphics:
         self.screen.fill([0, 0, 0])
         print(pygame.image.get_extended())
 
-    def load_image(self, image_num):
+    def load_image(self, image_num=0):
         try:
             img = pygame.image.load(os.path.join('images', '{}.bmp'.format(image_num)))
         except:
