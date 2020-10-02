@@ -1,0 +1,25 @@
+1. Default Connection
+**********************************************
+* Board_Connector * Pin Name * RPi_Connector *
+*       1         *     GND  *      GND      *
+*       2         *     MOSI *      GPIO_10  *
+*       3         *     SCK  *      GPIO_11  *
+*       4         *     CS   *      GPIO_22  *
+*       5         *     MISO *      GPIO_9   *
+*       6         *    +3.3V *      +3.3V    *
+**********************************************
+
+2. Config.txt Description.
+'spi': - NEVER CHANGE
+'bus': - SPI Bus Number
+'device': - SPI Device Number
+'max_speed_hz': - SPI Bus Frequency (Hz)
+'spi_mode': - SPI Bus Mode
+'cs_pin': Number of CS pin (GPIO)
+'modules': - Number of connected PCB modules
+'images': - Number of images in base
+'floor':  - Number of floor images in base
+'wall':  - Number of wall images in base
+'room':  - Number of rooms
+'timeout':  - Timeout to reset the image default
+
