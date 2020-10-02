@@ -1,5 +1,6 @@
 import pygame
 import os
+from PIL import Image
 
 
 class Graphics:
@@ -14,7 +15,14 @@ class Graphics:
         print(pygame.image.get_extended())
 
     def load_image(self, image_num):
-        img = pygame.image.load(os.path.join('images', '{}.jpg'.format(image_num)))
+        try:
+            img = pygame.image.load(os.path.join('images', '{}.bmp'.format(image_num)))
+        except:
+            f = Image.open(os.path.join('images', '{}.jpg'.format(image_num)))
+            f = f.save(os.path.join('images', '{}.bmp'.format(image_num)))
+            img = pygame.image.load(os.path.join('images', '{}.bmp'.format(image_num)))
+
+        img = pygame.image.load(os.path.join('images', '{}.bmp'.format(image_num)))
         self.screen.blit(img, [0, 0])
         self.display.update()
         for event in pygame.event.get():
