@@ -30,7 +30,7 @@ class SPI:
         return a
 
     def get_timeout(self):
-        return self.config['timeout'] * 10
+        return self.config['timeout'] * 5
 
     def process(self):
         self.timeout -= 1
