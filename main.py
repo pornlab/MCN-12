@@ -3,9 +3,10 @@ if __name__ == "__main__":
     import time
 
     try:
+        os.system('pip3 install -U pygame==2.0.0.dev12')
         import pygame
     except:
-        os.system('pip3 install -U pygame==2.0.0.dev12')
+
         import pygame
     try:
         import RPi.GPIO as IO
