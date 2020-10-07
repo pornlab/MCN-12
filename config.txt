@@ -5,7 +5,7 @@
 'spi_mode': 0,
 'cs_pin': 22
 },
-'modules': 2,
+'modules': 4,
 'images': 100,
 'floor': 12,
 'wall': 12,
