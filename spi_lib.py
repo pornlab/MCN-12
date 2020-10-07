@@ -40,6 +40,7 @@ class SPI:
         print(self.read_cmd)
         self.IO.output(self.cs, 0)
         if self.sum() > 0:
+            print("in ", self.read_cmd)
             self.timeout = self.get_timeout()
             self.IO.output(self.cs, 1)
             time.sleep(0.1)
