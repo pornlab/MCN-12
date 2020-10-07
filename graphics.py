@@ -10,7 +10,7 @@ class Graphics:
         self.display = pygame.display
         self.scr_w = self.display.Info().current_w
         self.scr_h = self.display.Info().current_h
-        self.screen = self.display.set_mode(size=[self.scr_w, self.scr_h], flags=pygame.FULLSCREEN, display=0)
+        self.screen = self.display.set_mode(size=[self.scr_w, self.scr_h])#, flags=pygame.FULLSCREEN, display=0)
         self.screen.fill([0, 0, 0])
         print(pygame.image.get_extended())
 
