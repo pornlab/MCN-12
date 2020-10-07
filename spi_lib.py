@@ -59,4 +59,5 @@ class SPI:
                     self.image_num = 1 + (i * 8) + math.log2(sum(self.read_cmd))
         if self.timeout == 0:
             self.image_num = 0
+            self.out = [0] * self.modules
         return int(self.image_num)
