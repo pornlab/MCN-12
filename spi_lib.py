@@ -36,7 +36,7 @@ class SPI:
     def process(self):
         self.timeout -= 1
         self.read_cmd = self.spi.readbytes(self.modules)
-        self.spi.writebytes(self.out)
+        self.spi.writebytes(self.out[::-1])
         print(self.read_cmd)
         self.IO.output(self.cs, 1)
         time.sleep(0.1)
