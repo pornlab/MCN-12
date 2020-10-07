@@ -45,6 +45,7 @@ class SPI:
             print("in ", self.read_cmd)
             self.timeout = self.get_timeout()
             self.spi.writebytes(self.read_cmd)
+            time.sleep(0.1)
             self.IO.output(self.cs, 1)
             time.sleep(0.1)
             self.IO.output(self.cs, 0)
