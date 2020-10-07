@@ -45,11 +45,11 @@ class SPI:
             print("in ", self.read_cmd)
             self.timeout = self.get_timeout()
             self.spi.writebytes(self.read_cmd)
-            self.IO.output(self.cs, 0)
-            time.sleep(0.1)
             self.IO.output(self.cs, 1)
             time.sleep(0.1)
             self.IO.output(self.cs, 0)
+            time.sleep(0.1)
+            self.IO.output(self.cs, 1)
             for i in range(self.modules):
                 if self.read_cmd[i] != 0:
                     self.image_num = 1 + (i * 8) + math.log2(sum(self.read_cmd))
