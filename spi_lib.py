@@ -39,9 +39,9 @@ class SPI:
         self.spi.writebytes(self.out[::-1])
         print(self.read_cmd)
         self.IO.output(self.cs, 1)
-        time.sleep(0.1)
+        time.sleep(0.01)
         self.IO.output(self.cs, 0)
-        time.sleep(0.1)
+        time.sleep(0.01)
         self.IO.output(self.cs, 1)
         if self.sum() > 0:
             print("in ", self.read_cmd)
