@@ -8,7 +8,8 @@ class Routine:
         self.spi = SPI()
         self.image = 0
         self.graph = Graphics()
-        self.process = threading.Thread(target=self.routine, args=(None, ))
+        self.process = threading.Thread(target=self.routine_spi, args=(None, ))
+        self.process = threading.Thread(target=self.routine_graph, args=(None,))
         self.process.start()
 
     def routine_spi(self, a):
