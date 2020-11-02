@@ -50,12 +50,12 @@ class SPI:
         self.IO.output(self.cs, 1)
         if self.room > 0:
             self.out = self.read_cmd
-            self.out.append(self.room)
+            self.out.insert(0, self.room)
         if self.sum() > 0:
             print("in ", self.read_cmd)
             self.timeout = self.get_timeout()
             self.out = self.read_cmd
-            self.out.append(self.room)
+            self.out.insert(0, self.room)
             for i in range(self.modules):
                 if self.read_cmd[i] != 0:
                     self.image_num = 1 + (i * 8) + math.log2(sum(self.read_cmd))
