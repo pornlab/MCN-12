@@ -40,6 +40,8 @@ class SPI:
         self.data = self.spi.readbytes(self.modules)
         self.room = self.data[0]
         self.read_cmd = self.data[1:4]
+        self.out = self.read_cmd
+        self.out.insert(0, self.room)
         self.spi.writebytes(self.out[::-1])
         print(self.data)
         print(self.read_cmd)
