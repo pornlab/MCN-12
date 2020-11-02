@@ -39,7 +39,7 @@ class SPI:
         self.timeout -= 1
         self.data = self.spi.readbytes(self.modules)
         self.room = self.data[0]
-        self.read_cmd = self.data[1:3]
+        self.read_cmd = self.data[1:4]
         self.spi.writebytes(self.out[::-1])
         print(self.read_cmd)
         self.IO.output(self.cs, 1)
