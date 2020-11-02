@@ -11,9 +11,12 @@ class Routine:
         self.process = threading.Thread(target=self.routine, args=(None, ))
         self.process.start()
 
-    def routine(self, a):
+    def routine_spi(self, a):
         while 1:
             self.image = self.spi.process()
+
+    def routine_graph(self, a):
+        while 1:
             self.graph.load_image(self.image)
             if self.image != 0:
                 print(self.image)
