@@ -1,6 +1,7 @@
 from spi_lib import SPI
 import threading
 from graphics import Graphics
+import time
 
 
 class Routine:
@@ -16,6 +17,7 @@ class Routine:
     def routine_spi(self, a):
         while 1:
             self.image = self.spi.process()
+            time.sleep(0.1)
 
     def routine_graph(self, a):
         while 1:
