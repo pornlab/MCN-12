@@ -20,7 +20,7 @@ class SPI:
         self.IO.setup(self.cs, 0)
         self.IO.output(self.cs, 0)
         self.data = [0] * self.modules
-        self.read_cmd = [0] * self.modules - 1
+        self.read_cmd = [0] * (self.modules - 1)
         self.room = 0
         self.out = [0] * self.modules
         self.timeout = self.get_timeout()
