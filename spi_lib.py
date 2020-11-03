@@ -67,7 +67,6 @@ class SPI:
             self.timeout = self.get_timeout()
             for i in range(self.modules):
                 self.out[i] = self.floor_data[i]
-            self.floor_data = [0] * self.modules
             self.out[0] = self.room_data
 
         if (self.wall_num() > 0) and self.room_data > 0:
@@ -75,7 +74,6 @@ class SPI:
             self.timeout = self.get_timeout()
             for i in range(self.modules):
                 self.out[i] = self.wall_data[i]
-            self.wall_data = [0] * self.modules
             self.out[0] = self.room_data
 
         if self.data[0] > 0:
