@@ -30,7 +30,7 @@ class SPI:
         self.room = 0
         self.out = [0] * self.modules
         self.timeout = self.get_timeout()
-        self.image_path = ''
+        self.image_path = os.path.join('images', 'room_0', 'wall_0', '1.png')
 
     def wall_num(self):
         sum = 0
