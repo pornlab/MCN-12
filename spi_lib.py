@@ -52,7 +52,7 @@ class SPI:
         time.sleep(0.01)
         self.IO.output(self.cs, 1)
 
-        if self.sum() > 0:
+        if (self.sum() > 0) and self.room > 0:
             print("in ", self.read_cmd)
             self.timeout = self.get_timeout()
             self.read_cmd.insert(0, self.room)
