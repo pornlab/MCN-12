@@ -88,6 +88,7 @@ class SPI:
             self.out[0] = self.room_data
 
         if self.data[0] > 0:
+            self.timeout = self.get_timeout()
             self.room_data = self.data[0]
             self.out[0] = self.room_data
             self.room = int(1 + math.log2(self.room_data))
