@@ -2,6 +2,7 @@ import spidev
 import math
 import RPi.GPIO as IO
 import time
+import os
 
 class SPI:
     def __init__(self):
@@ -28,7 +29,7 @@ class SPI:
         self.room = 0
         self.out = [0] * self.modules
         self.timeout = self.get_timeout()
-        self.image_num = 0
+        self.image_path = ''
 
     def wall_num(self):
         sum = 0
@@ -38,7 +39,7 @@ class SPI:
                 sum += (math.log2(self.data[i]) - 3) + (i - 1) * 4
                 self.wall_data[i] = self.data[i]
 
-        return sum
+        return int(sum)
 
     def floor_num(self):
         sum = 0
@@ -48,7 +49,7 @@ class SPI:
                 sum += 1 + (math.log2(self.data[i])) + (i - 1) * 4
                 self.floor_data[i] = self.data[i]
 
-        return sum
+        return int(sum)
 
     def get_timeout(self):
         return self.config['timeout'] * 25
@@ -88,7 +89,7 @@ class SPI:
         if self.data[0] > 0:
             self.room_data = self.data[0]
             self.out[0] = self.room_data
-            self.room = 1 + math.log2(self.room_data)
+            self.room = int(1 + math.log2(self.room_data))
 
         if self.timeout == 0:
             self.room_data = 0
@@ -98,5 +99,6 @@ class SPI:
             self.floor = 0
             self.room = 0
             self.out = [0] * self.modules
-
-        return int(self.image_num)
+        self.image_path = os.path.join('images', 'room {}'.format(self.room), 'wall {}'.format(self.wall),
+                                       '{}.png'.format(self.floor))
+        return self.image_path
