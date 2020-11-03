@@ -45,6 +45,7 @@ class SPI:
         print('ROOM - ', self.room)
         print('CMD = ', self.read_cmd)
         print('OUT - ', self.out)
+        self.spi.writebytes(self.out[::-1])
         self.IO.output(self.cs, 1)
         time.sleep(0.01)
         self.IO.output(self.cs, 0)
@@ -67,5 +68,4 @@ class SPI:
             self.room = 0
             self.out = [0] * self.modules
 
-        self.spi.writebytes(self.out[::-1])
         return int(self.image_num)
