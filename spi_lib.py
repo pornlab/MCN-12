@@ -63,17 +63,20 @@ class SPI:
         self.IO.output(self.cs, 0)
         time.sleep(0.01)
         self.IO.output(self.cs, 1)
-
-        if (self.floor_num() > 0) and self.room_data > 0:
-            self.floor = self.floor_num()
+        floor = self.floor_num()
+        wall = self.wall_num()
+        if (floor > 0) and self.room_data > 0:
+            self.floor_data = [0] * self.modules
+            self.floor = floor
             self.timeout = self.get_timeout()
             # self.out = [0] * self.modules
             for i in range(self.modules):
                 self.out[i] = self.floor_data[i] + self.wall_data[i]
             self.out[0] = self.room_data
 
-        if (self.wall_num() > 0) and self.room_data > 0:
-            self.wall = self.wall_num()
+        if (wall > 0) and self.room_data > 0:
+            self.wall_data = [0] * self.modules
+            self.wall = wall
             self.timeout = self.get_timeout()
             # self.out = [0] * self.modules
             for i in range(self.modules):
