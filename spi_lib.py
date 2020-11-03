@@ -49,9 +49,9 @@ class SPI:
         self.IO.output(self.cs, 0)
         time.sleep(0.01)
         self.IO.output(self.cs, 1)
-        if self.room > 0:
-            self.out = self.read_cmd
-            self.out.insert(0, self.room)
+        # if self.room > 0:
+        #     self.out = self.read_cmd
+        #     self.out.insert(0, self.room)
         if self.sum() > 0:
             print("in ", self.read_cmd)
             self.timeout = self.get_timeout()
