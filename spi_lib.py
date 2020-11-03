@@ -38,7 +38,6 @@ class SPI:
     def process(self):
         self.timeout -= 1
         self.data = self.spi.readbytes(self.modules)
-        self.room = self.data[0]
         self.read_cmd = self.data[1:self.modules]
         self.spi.writebytes(self.out[::-1])
         print('ROOM - ', self.room)
@@ -50,9 +49,10 @@ class SPI:
         self.IO.output(self.cs, 0)
         time.sleep(0.01)
         self.IO.output(self.cs, 1)
-        # if self.room > 0:
-        #     self.out = self.read_cmd
-        #     self.out.insert(0, self.room)
+        if self.data[0] > 0:
+            self.room = self.data[0]
+            self.out = self.read_cmd
+            self.out.insert(0, self.room)
         if self.sum() > 0:
             print("in ", self.read_cmd)
             self.timeout = self.get_timeout()
