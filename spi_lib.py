@@ -51,7 +51,7 @@ class SPI:
     def process(self):
         self.timeout -= 1
         self.data = self.spi.readbytes(self.modules)
-        print('ROOM - ', self.room)
+        print('ROOM - ', math.log2(self.room))
         print('WALL - ', self.wall)
         print('FLOOR - ', self.floor)
         self.spi.writebytes(self.out[::-1])
@@ -67,7 +67,7 @@ class SPI:
             for i in range(self.modules):
                 self.out[i] = self.wall_data[i] + self.floor_data[i]
             self.floor_data = [0] * self.modules
-            self.out[0] = 2**self.room
+            self.out[0] = self.room
 
         if (self.wall_num() > 0) and self.room > 0:
             self.wall = self.wall_num()
@@ -75,12 +75,11 @@ class SPI:
             for i in range(self.modules):
                 self.out[i] = self.wall_data[i] + self.floor_data[i]
             self.wall_data = [0] * self.modules
-            self.out[0] = 2**self.room
+            self.out[0] = self.room
 
         if self.data[0] > 0:
             self.room = self.data[0]
             self.out[0] = self.room
-            self.room = math.log2(self.room)
 
         if self.timeout == 0:
             self.room = 0
