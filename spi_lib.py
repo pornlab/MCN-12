@@ -103,5 +103,4 @@ class SPI:
 
         self.image_path = os.path.join('images', 'room {}'.format(self.room), 'wall {}'.format(self.wall),
                                        '{}.png'.format(self.floor))
-        print(self.image_path)
         return self.image_path
