@@ -54,6 +54,7 @@ class SPI:
         print('ROOM - ', self.room)
         print('WALL - ', self.wall)
         print('FLOOR - ', self.floor)
+        print()
         self.spi.writebytes(self.out[::-1])
         self.IO.output(self.cs, 1)
         time.sleep(0.01)
@@ -78,8 +79,8 @@ class SPI:
             self.out[0] = self.room
 
         if self.data[0] > 0:
-            self.room = self.data[0]
-            self.out[0] = self.room
+            self.room = math.log2(self.data[0])
+            self.out[0] = self.data[0]
         if self.timeout == 0:
             self.room = 0
             self.floor_data = [0] * self.modules
