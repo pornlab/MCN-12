@@ -67,7 +67,7 @@ class SPI:
             for i in range(self.modules):
                 self.out[i] = self.wall_data[i] + self.floor_data[i]
             self.floor_data = [0] * self.modules
-            self.out[0] = self.room
+            self.out[0] = 2**self.room
 
         if (self.wall_num() > 0) and self.room > 0:
             self.wall = self.wall_num()
@@ -75,7 +75,7 @@ class SPI:
             for i in range(self.modules):
                 self.out[i] = self.wall_data[i] + self.floor_data[i]
             self.wall_data = [0] * self.modules
-            self.out[0] = self.room
+            self.out[0] = 2**self.room
 
         if self.data[0] > 0:
             self.room = self.data[0]
