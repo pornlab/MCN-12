@@ -21,7 +21,10 @@ class Graphics:
         #     f = Image.open(image_path)
         #     f = f.save(os.path.join('images', '{}.bmp'.format(image_num)))
         #     img = pygame.image.load(os.path.join('images', '{}.bmp'.format(image_num)))
-        img = pygame.image.load(image_path)
+        try:
+            img = pygame.image.load(image_path)
+        except:
+            print(image_path)
         self.screen.blit(img, [0, 0])
         self.display.update()
         for event in pygame.event.get():
