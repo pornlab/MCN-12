@@ -3,7 +3,6 @@ import threading
 from graphics import Graphics
 import os
 
-
 class Routine:
     def __init__(self):
         self.spi = SPI()
