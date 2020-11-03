@@ -22,9 +22,10 @@ class SPI:
         self.data = []
         self.wall_data = [0] * self.modules
         self.floor_data = [0] * self.modules
-        self.room = 0
+        self.room_data = 0
         self.wall = 0
         self.floor = 0
+        self.room = 0
         self.out = [0] * self.modules
         self.timeout = self.get_timeout()
         self.image_num = 0
@@ -67,7 +68,7 @@ class SPI:
             for i in range(self.modules):
                 self.out[i] = self.wall_data[i] + self.floor_data[i]
             self.floor_data = [0] * self.modules
-            self.out[0] = self.room
+            self.out[0] = self.room_data
 
         if (self.wall_num() > 0) and self.room > 0:
             self.wall = self.wall_num()
@@ -75,16 +76,20 @@ class SPI:
             for i in range(self.modules):
                 self.out[i] = self.wall_data[i] + self.floor_data[i]
             self.wall_data = [0] * self.modules
-            self.out[0] = self.room
+            self.out[0] = self.room_data
 
         if self.data[0] > 0:
-            self.room = self.data[0]
-            self.out[0] = self.room
+            self.room_data = self.data[0]
+            self.out[0] = self.room_data
+            self.room = math.log2(self.room_data)
 
         if self.timeout == 0:
-            self.room = 0
+            self.room_data = 0
             self.floor_data = [0] * self.modules
             self.wall_data = [0] * self.modules
+            self.wall = 0
+            self.floor = 0
+            self.room = 0
             self.out = [0] * self.modules
 
         return int(self.image_num)
