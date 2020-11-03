@@ -19,17 +19,17 @@ class SPI:
         self.IO.setwarnings(False)
         self.IO.setup(self.cs, 0)
         self.IO.output(self.cs, 0)
-        self.data = []
-        self.read_cmd = []
+        self.data = [0] * self.modules
+        self.read_cmd = [0] * (self.modules - 1)
         self.room = 0
-        self.out = [0]
+        self.out = [0] * self.modules
         self.timeout = self.get_timeout()
         self.image_num = 0
 
     def sum(self):
         a = 0
-        for i in range(len(self.read_cmd)):
-            a += self.read_cmd[i] * (2 ** (8 * i))
+        for i in range(1, len(self.data)):
+            a += self.data[i] * (2 ** (8 * i))
         return a
 
     def get_timeout(self):
@@ -38,9 +38,6 @@ class SPI:
     def process(self):
         self.timeout -= 1
         self.data = self.spi.readbytes(self.modules)
-        self.read_cmd = []
-        for i in range(1, self.modules):
-            self.read_cmd.append(self.data[i])
         print('DATA- ', self.data)
         print('ROOM - ', self.room)
         print('CMD = ', self.read_cmd)
@@ -53,7 +50,7 @@ class SPI:
         self.IO.output(self.cs, 1)
 
         if (self.sum() > 0) and self.room > 0:
-            print("in ", self.read_cmd)
+            self.read_cmd = self.data[1 : self.modules]
             self.timeout = self.get_timeout()
             self.read_cmd.insert(0, self.room)
             self.out = self.read_cmd
@@ -67,6 +64,7 @@ class SPI:
         if self.timeout == 0:
             self.image_num = 0
             self.room = 0
+            self.read_cmd = [0] * (self.modules - 1)
             self.out = [0] * self.modules
 
         return int(self.image_num)
