@@ -41,7 +41,7 @@ class SPI:
         self.read_cmd = self.data[1:self.modules]
         self.spi.writebytes(self.out[::-1])
         print('ROOM - ', self.room)
-        # print('OUT - ', self.out)
+        print('OUT - ', self.out)
         print('DATA- ', self.data)
         # print('CMD = ', self.read_cmd)
         self.IO.output(self.cs, 1)
