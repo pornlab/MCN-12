@@ -33,7 +33,7 @@ class SPI:
         sum = 0
         for i in range(1, len(self.data)):
             if self.data[i] > 15:
-                sum += (math.log2(self.data[i]) - 3) + i * 4
+                sum += (math.log2(self.data[i]) - 3) + (i - 1) * 4
                 self.wall_data[i] = self.data[i]
         return int(sum)
 
@@ -41,7 +41,7 @@ class SPI:
         sum = 0
         for i in range(1, len(self.data)):
             if 0 < self.data[i] < 16:
-                sum += (math.log2(self.data[i])) + i * 4
+                sum += (math.log2(self.data[i])) + (i - 1) * 4
                 self.floor_data[i] = self.data[i]
         return int(sum)
 
