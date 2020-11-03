@@ -22,7 +22,7 @@ class SPI:
         self.data = []
         self.read_cmd = []
         self.room = 0
-        self.out = []
+        self.out = [0]
         self.timeout = self.get_timeout()
         self.image_num = 0
 
