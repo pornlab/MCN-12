@@ -32,7 +32,6 @@ class SPI:
     def wall_num(self):
         sum = 0
         for i in range(1, len(self.data)):
-            # byte_data = self.data[i] * (2 ** (8 * i))
             if self.data[i] > 15:
                 sum += (math.log2(self.data[i]) - 3) + i * 4
                 self.wall_data[i] = self.data[i]
@@ -41,7 +40,6 @@ class SPI:
     def floor_num(self):
         sum = 0
         for i in range(1, len(self.data)):
-            # byte_data = self.data[i] * (2 ** (8 * i))
             if 0 < self.data[i] < 16:
                 sum += (math.log2(self.data[i])) + i * 4
                 self.floor_data[i] = self.data[i]
@@ -68,6 +66,7 @@ class SPI:
             self.timeout = self.get_timeout()
             for i in range(self.modules):
                 self.out[i] = self.wall_data[i] + self.floor_data[i]
+            self.floor_data = [0] * self.modules
             self.out[0] = self.room
 
         if (self.wall_num() > 0) and self.room > 0:
@@ -75,10 +74,12 @@ class SPI:
             self.timeout = self.get_timeout()
             for i in range(self.modules):
                 self.out[i] = self.wall_data[i] + self.floor_data[i]
+            self.wall_data = [0] * self.modules
             self.out[0] = self.room
 
         if self.data[0] > 0:
             self.room = self.data[0]
+            self.out[0] = self.room
         if self.timeout == 0:
             self.room = 0
             self.floor_data = [0] * self.modules
