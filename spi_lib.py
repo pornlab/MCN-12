@@ -35,7 +35,7 @@ class SPI:
             if self.data[i] > 15:
                 sum += (math.log2(self.data[i]) - 3) + (i - 1) * 4
                 self.wall_data[i] = self.data[i]
-        return int(sum)
+        return sum
 
     def floor_num(self):
         sum = 0
@@ -43,7 +43,7 @@ class SPI:
             if 0 < self.data[i] < 16:
                 sum += 1 + (math.log2(self.data[i])) + (i - 1) * 4
                 self.floor_data[i] = self.data[i]
-        return int(sum)
+        return sum
 
     def get_timeout(self):
         return self.config['timeout'] * 25
