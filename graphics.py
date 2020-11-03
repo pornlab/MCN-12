@@ -14,15 +14,15 @@ class Graphics:
         self.screen.fill([0, 0, 0])
         print(pygame.image.get_extended())
 
-    def load_image(self, image_num=0):
-        try:
-            img = pygame.image.load(os.path.join('images', '{}.bmp'.format(image_num)))
-        except:
-            f = Image.open(os.path.join('images', '{}.jpg'.format(image_num)))
-            f = f.save(os.path.join('images', '{}.bmp'.format(image_num)))
-            img = pygame.image.load(os.path.join('images', '{}.bmp'.format(image_num)))
-
-        img = pygame.image.load(os.path.join('images', '{}.bmp'.format(image_num)))
+    def load_image(self, image_path=os.path.join('images', 'room 0', 'wall 0', '1.png')):
+        # try:
+        #     img = pygame.image.load(image_path)
+        # except:
+        #     f = Image.open(image_path)
+        #     f = f.save(os.path.join('images', '{}.bmp'.format(image_num)))
+        #     img = pygame.image.load(os.path.join('images', '{}.bmp'.format(image_num)))
+        print(image_path)
+        img = pygame.image.load(image_path)
         self.screen.blit(img, [0, 0])
         self.display.update()
         for event in pygame.event.get():
