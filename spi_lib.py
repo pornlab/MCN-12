@@ -20,19 +20,32 @@ class SPI:
         self.IO.setup(self.cs, 0)
         self.IO.output(self.cs, 0)
         self.data = []
-        self.read_cmd = []
+        self.wall_data = [0] * self.modules
+        self.floor_data = [0] * self.modules
         self.room = 0
         self.wall = 0
         self.floor = 0
-        self.out = [0]
+        self.out = [0] * self.modules
         self.timeout = self.get_timeout()
         self.image_num = 0
 
-    def sum(self):
-        a = 0
+    def wall_num(self):
+        sum = 0
         for i in range(1, len(self.data)):
-            a += self.data[i] * (2 ** (8 * i))
-        return a
+            # byte_data = self.data[i] * (2 ** (8 * i))
+            if self.data[i] > 15:
+                sum += (math.log2(self.data[i]) - 3) + i * 4
+                self.wall_data[i] = self.data[i]
+        return sum
+
+    def floor_num(self):
+        sum = 0
+        for i in range(1, len(self.data)):
+            # byte_data = self.data[i] * (2 ** (8 * i))
+            if self.data[i] < 16:
+                sum += (math.log2(self.data[i])) + i * 4
+                self.floor_data[i] = self.data[i]
+        return sum
 
     def get_timeout(self):
         return self.config['timeout'] * 25
@@ -40,13 +53,9 @@ class SPI:
     def process(self):
         self.timeout -= 1
         self.data = self.spi.readbytes(self.modules)
-        self.read_cmd = []
-        for i in range(1, self.modules):
-            self.read_cmd.append(self.data[i])
-        print('DATA- ', self.data)
         print('ROOM - ', self.room)
-        print('CMD = ', self.read_cmd)
-        print('OUT - ', self.out)
+        print('WALL - ', self.wall)
+        print('FLOOR - ', self.floor)
         self.spi.writebytes(self.out[::-1])
         self.IO.output(self.cs, 1)
         time.sleep(0.01)
@@ -54,21 +63,26 @@ class SPI:
         time.sleep(0.01)
         self.IO.output(self.cs, 1)
 
-        if (self.sum() > 0) and self.room > 0:
-            print("in ", self.read_cmd)
+        if (self.floor_num() > 0) and self.room > 0:
+            self.floor = self.floor_num()
             self.timeout = self.get_timeout()
-            self.read_cmd.insert(0, self.room)
-            self.out = self.read_cmd
-            for i in range(1, self.modules):
-                if self.read_cmd[i] != 0:
-                    self.image_num = 1 + (i * 8) + math.log2(sum(self.read_cmd))
+            for i in range(self.modules):
+                self.out[i] = self.wall_data[i] + self.floor_data[i]
+            self.out[0] = self.room
+
+        if (self.wall_num() > 0) and self.room > 0:
+            self.wall = self.wall_num()
+            self.timeout = self.get_timeout()
+            for i in range(self.modules):
+                self.out[i] = self.wall_data[i] + self.floor_data[i]
+            self.out[0] = self.room
+
         if self.data[0] > 0:
             self.room = self.data[0]
-            self.read_cmd.insert(0, self.room)
-            self.out = self.read_cmd
         if self.timeout == 0:
-            self.image_num = 0
             self.room = 0
+            self.floor_data = [0] * self.modules
+            self.wall_data = [0] * self.modules
             self.out = [0] * self.modules
 
         return int(self.image_num)
