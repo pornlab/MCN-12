@@ -3,6 +3,7 @@ import math
 import RPi.GPIO as IO
 import time
 import os
+from PIL import Image
 
 class SPI:
     def __init__(self):
@@ -99,6 +100,7 @@ class SPI:
             self.floor = 0
             self.room = 0
             self.out = [0] * self.modules
-        self.image_path = os.path.join('images', '1.png') #'room {}'.format(self.room), 'wall {}'.format(self.wall), '{}.png'.format(self.floor))
-        print(self.image_path)
-        return self.image_path
+        self.image_path = os.path.join('images', 'room {}'.format(self.room), 'wall {}'.format(self.wall), '{}'.format(self.floor))
+        f = Image.open(self.image_path+'.png')
+        f = f.save(self.image_path+'.bmp')
+        return self.image_path+'.bmp'
