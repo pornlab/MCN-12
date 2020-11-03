@@ -7,7 +7,7 @@ import os
 class Routine:
     def __init__(self):
         self.spi = SPI()
-        self.image = os.path.join('images', 'room_0', 'wall_0', '1.png')
+        self.image = os.path.join('images', 'room_0', 'wall_0', '0.png')
         self.graph = Graphics()
         self.process1 = threading.Thread(target=self.routine_spi, args=(None, ))
         self.process2 = threading.Thread(target=self.routine_graph, args=(None,))
