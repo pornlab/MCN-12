@@ -57,8 +57,8 @@ class SPI:
         self.timeout -= 1
         self.data = self.spi.readbytes(self.modules)
         print('ROOM - ', self.room)
-        print('WALL - ', self.wall_data)
-        print('FLOOR - ', self.floor_data)
+        print('WALL - ', self.wall)
+        print('FLOOR - ', self.floor)
         self.spi.writebytes(self.out[::-1])
         self.IO.output(self.cs, 1)
         time.sleep(0.01)
