@@ -38,7 +38,7 @@ class SPI:
     def process(self):
         self.timeout -= 1
         self.data = self.spi.readbytes(self.modules)
-        for i in range(1, len(self.modules)):
+        for i in range(1, self.modules):
             self.read_cmd.append(self.data[i])
         print('DATA- ', self.data)
         print('ROOM - ', self.room)
