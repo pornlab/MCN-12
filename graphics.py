@@ -1,7 +1,6 @@
 import pygame
 import os
 from moviepy.editor import VideoFileClip as VC
-import ctypes
 
 
 class Graphics:
@@ -11,11 +10,10 @@ class Graphics:
         self.display = pygame.display
         self.scr_w = self.display.Info().current_w
         self.scr_h = self.display.Info().current_h
-        self.screen = self.display.set_mode(size=[self.scr_w, self.scr_h])#, flags=pygame.FULLSCREEN, display=0)
+        self.screen = self.display.set_mode(size=[self.scr_w, self.scr_h])  # , flags=pygame.FULLSCREEN, display=0)
         self.screen.fill([0, 0, 0])
         print(pygame.image.get_extended())
         self.path = "videos/1080_60fps.mp4"
-
 
     def load_image(self, image_path=os.path.join('images', 'room_0', 'wall_0', '0.png')):
         clip = VC(self.path)
@@ -27,10 +25,8 @@ class Graphics:
             else:
                 clip.close()
             pygame.display.flip()
-        except:
+        finally:
             pass
-
-
 
         self.display.update()
         for event in pygame.event.get():

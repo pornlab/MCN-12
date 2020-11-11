@@ -3,7 +3,7 @@ import math
 import RPi.GPIO as IO
 import time
 import os
-from PIL import Image
+
 
 class SPI:
     def __init__(self):
@@ -58,9 +58,6 @@ class SPI:
     def process(self):
         self.timeout -= 1
         self.data = self.spi.readbytes(self.modules)
-        # print('ROOM - ', self.room)
-        # print('WALL - ', self.wall)
-        # print('FLOOR - ', self.floor)
         self.spi.writebytes(self.out[::-1])
         self.IO.output(self.cs, 1)
         time.sleep(0.01)
@@ -70,19 +67,15 @@ class SPI:
         floor = self.floor_num()
         wall = self.wall_num()
         if (floor > 0) and self.room_data > 0:
-            #self.floor_data = [0] * self.modules
             self.floor = floor
             self.timeout = self.get_timeout()
-            # self.out = [0] * self.modules
             for i in range(self.modules):
                 self.out[i] = self.floor_data[i] + self.wall_data[i]
             self.out[0] = self.room_data
 
         if (wall > 0) and self.room_data > 0:
-            #self.wall_data = [0] * self.modules
             self.wall = wall
             self.timeout = self.get_timeout()
-            # self.out = [0] * self.modules
             for i in range(self.modules):
                 self.out[i] = self.wall_data[i] + self.floor_data[i]
             self.out[0] = self.room_data

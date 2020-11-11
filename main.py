@@ -4,25 +4,25 @@ if __name__ == "__main__":
 
     try:
         import pygame
-    except:
-        os.system('pip3 install -U pygame==2.0.0.dev12')
+    finally:
+        os.system('pip3 install -U pygame==1.9.6')
         import pygame
 
     try:
         import RPi.GPIO as IO
-    except:
+    finally:
         os.system('pip3 install RPi.GPIO')
         import RPi.GPIO as IO
 
     try:
         import moviepy
-    except:
+    finally:
         os.system('pip3 install moviepy')
         import pyglet
 
     try:
         import ctypes
-    except:
+    finally:
         os.system('pip3 install ctypes')
         import ctypes
 
