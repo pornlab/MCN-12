@@ -40,6 +40,6 @@ class Graphics:
                 break
 
 
-g = Graphics()
-while 1:
-    g.load_image()
+# g = Graphics()
+# while 1:
+#     g.load_image()
