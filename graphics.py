@@ -25,7 +25,7 @@ class Graphics:
             else:
                 clip.close()
             pygame.display.flip()
-        finally:
+        except:
             pass
 
         self.display.update()
