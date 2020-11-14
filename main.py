@@ -17,7 +17,7 @@ if __name__ == "__main__":
     try:
         import moviepy
     finally:
-        os.system('pip3 install moviepy')
+        os.system('pip3 install moviepy==1.0.3')
         import pyglet
 
     try:
