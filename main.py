@@ -18,7 +18,7 @@ if __name__ == "__main__":
         import moviepy
     except:
         os.system('pip3 install moviepy==1.0.3')
-        import pyglet
+        import moviepy
 
     try:
         import ctypes
