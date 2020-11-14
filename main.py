@@ -26,6 +26,9 @@ if __name__ == "__main__":
         os.system('pip3 install ctypes')
         import ctypes
 
+    try:
+        os.system('sudo apt-get install libatlas-base-dev')
+
     time.sleep(1)
     cmd = os.system('git -C "/home/pi/MCN-12" pull origin master')
     time.sleep(5)
