@@ -1,5 +1,6 @@
 import pygame
 import os
+from subprocess import Popen
 
 
 class Graphics:
@@ -13,12 +14,7 @@ class Graphics:
         self.screen.fill([0, 0, 0])
         print(pygame.image.get_extended())
         self.path = "videos/1080_60fps.mp4"
-        self.FPS = 60
-        pygame.mixer.quit()
-        self.clock = pygame.time.Clock()
-        self.movie = pygame.movie.Movie(self.path)
-        self.movie.set_display(self.screen)
-        self.clock.tick(self.FPS)
+
 
 
     def load_image(self, image_path=os.path.join('images', 'room_0', 'wall_0', '0.png')):
@@ -26,9 +22,10 @@ class Graphics:
             img = pygame.image.load(image_path)
             self.screen.blit(img, [0, 0])
             if '0.png' in image_path:
-                self.movie.play()
+                os.system('killall omxplayer.bin')
+                omxc = Popen(['omxplayer', '-b', self.path])
             else:
-                self.movie.stop()
+                os.system('killall omxplayer.bin')
             pygame.display.flip()
         except:
             pass
