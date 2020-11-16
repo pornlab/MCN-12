@@ -1,5 +1,6 @@
 import pygame
 import os
+import sys
 from subprocess import Popen
 
 
@@ -35,10 +36,12 @@ class Graphics:
             if event.type == pygame.QUIT:
                 os.system('killall omxplayer.bin')
                 pygame.quit()
+                sys.exit()
                 break
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 os.system('killall omxplayer.bin')
                 pygame.quit()
+                sys.exit()
                 break
 
 
