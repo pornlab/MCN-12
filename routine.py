@@ -9,11 +9,11 @@ class Routine:
         self.spi = SPI()
         self.image = os.path.join('images', 'room_0', 'wall_0', '0.png')
         self.graph = Graphics()
+        self.done = False
         self.process1 = threading.Thread(target=self.routine_spi, args=(None, ))
         self.process2 = threading.Thread(target=self.routine_graph, args=(None,))
         self.process1.start()
         self.process2.start()
-        self.done = False
 
     def routine_spi(self, a):
         while not self.done:
