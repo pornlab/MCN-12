@@ -1,6 +1,5 @@
 import pygame
 import os
-from moviepy.editor import VideoFileClip as VC
 
 
 class Graphics:
@@ -14,16 +13,22 @@ class Graphics:
         self.screen.fill([0, 0, 0])
         print(pygame.image.get_extended())
         self.path = "videos/1080_60fps.mp4"
+        self.FPS = 60
+        pygame.mixer.quit()
+        self.clock = pygame.time.Clock()
+        self.movie = pygame.movie.Movie(self.path)
+        self.movie.set_display(self.screen)
+        self.clock.tick(self.FPS)
+
 
     def load_image(self, image_path=os.path.join('images', 'room_0', 'wall_0', '0.png')):
-        clip = VC(self.path)
         try:
             img = pygame.image.load(image_path)
             self.screen.blit(img, [0, 0])
             if '0.png' in image_path:
-                clip.preview()
+                self.movie.play()
             else:
-                clip.close()
+                self.movie.stop()
             pygame.display.flip()
         except:
             pass
@@ -31,11 +36,9 @@ class Graphics:
         self.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                clip.close()
                 pygame.quit()
                 break
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                clip.close()
                 pygame.quit()
                 break
 
