@@ -22,7 +22,7 @@ class Graphics:
             img = pygame.image.load(image_path)
             if '0.png' in image_path:
                 img = None
-                omxc = Popen(['omxplayer', '-b', self.path])
+                omxc = Popen(['omxplayer', '-o',  'local', '--loop', self.path])
             else:
                 os.system('killall omxplayer.bin')
             self.screen.blit(img, [0, 0])
@@ -33,9 +33,11 @@ class Graphics:
         self.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                os.system('killall omxplayer.bin')
                 pygame.quit()
                 break
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                os.system('killall omxplayer.bin')
                 pygame.quit()
                 break
 
