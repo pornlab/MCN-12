@@ -22,7 +22,6 @@ class Graphics:
             img = pygame.image.load(image_path)
             self.screen.blit(img, [0, 0])
             if '0.png' in image_path:
-                os.system('killall omxplayer.bin')
                 omxc = Popen(['omxplayer', '-b', self.path])
             else:
                 os.system('killall omxplayer.bin')
