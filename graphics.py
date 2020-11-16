@@ -44,9 +44,3 @@ class Graphics:
                 sys.exit()
                 return True
         return False
-
-
-
-# g = Graphics()
-# while 1:
-#     g.load_image()
