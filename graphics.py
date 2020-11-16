@@ -20,11 +20,12 @@ class Graphics:
     def load_image(self, image_path=os.path.join('images', 'room_0', 'wall_0', '0.png')):
         try:
             img = pygame.image.load(image_path)
-            self.screen.blit(img, [0, 0])
             if '0.png' in image_path:
+                img = None
                 omxc = Popen(['omxplayer', '-b', self.path])
             else:
                 os.system('killall omxplayer.bin')
+            self.screen.blit(img, [0, 0])
             pygame.display.flip()
         except:
             pass
