@@ -37,12 +37,14 @@ class Graphics:
                 os.system('killall omxplayer.bin')
                 pygame.quit()
                 sys.exit()
-                break
+                return True
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 os.system('killall omxplayer.bin')
                 pygame.quit()
                 sys.exit()
-                break
+                return True
+        return False
+
 
 
 # g = Graphics()

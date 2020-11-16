@@ -13,14 +13,15 @@ class Routine:
         self.process2 = threading.Thread(target=self.routine_graph, args=(None,))
         self.process1.start()
         self.process2.start()
+        self.done = False
 
     def routine_spi(self, a):
-        while 1:
+        while not self.done:
             self.image = self.spi.process()
 
     def routine_graph(self, a):
-        while 1:
-            self.graph.load_image(self.image)
+        while not self.done:
+            self.done = self.graph.load_image(self.image)
             if self.image != 0:
                 print(self.image)
                 pass
