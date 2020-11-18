@@ -18,7 +18,6 @@ class Graphics:
         self.path = "videos/1080_60fps.mp4"
 
 
-
     def load_image(self, image_path=os.path.join('images', 'room_0', 'wall_0', '0.png')):
         try:
             img = pygame.image.load(image_path)
