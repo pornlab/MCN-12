@@ -23,7 +23,7 @@ class Graphics:
         try:
             img = pygame.image.load(image_path)
             if '0.png' in image_path:
-                if self.video_playing:
+                if not self.video_playing:
                     omxc = Popen(['omxplayer', '-o',  'local', '--loop', self.path])
                     self.video_playing = True
                 img = None
