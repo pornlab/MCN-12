@@ -9,6 +9,7 @@ class Graphics:
         self.done = False
         pygame.init()
         self.display = pygame.display
+        self.video_playing = False
         self.scr_w = self.display.Info().current_w
         self.scr_h = self.display.Info().current_h
         self.screen = self.display.set_mode(size=[self.scr_w, self.scr_h])  # , flags=pygame.FULLSCREEN, display=0)
@@ -21,11 +22,14 @@ class Graphics:
     def load_image(self, image_path=os.path.join('images', 'room_0', 'wall_0', '0.png')):
         try:
             img = pygame.image.load(image_path)
-            if '0.png' in image_path:
+            if '0.png' in image_path
+                if self.video_playing:
+                    omxc = Popen(['omxplayer', '-o',  'local', '--loop', self.path])
+                    self.video_playing = True
                 img = None
-                omxc = Popen(['omxplayer', '-o',  'local', '--loop', self.path])
             else:
                 os.system('killall omxplayer.bin')
+                self.video_playing = False
             self.screen.blit(img, [0, 0])
             pygame.display.flip()
         except:
@@ -35,12 +39,12 @@ class Graphics:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 os.system('killall omxplayer.bin')
+                self.video_playing = False
                 pygame.quit()
-                sys.exit()
                 return True
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 os.system('killall omxplayer.bin')
+                self.video_playing = False
                 pygame.quit()
-                sys.exit()
                 return True
         return False
