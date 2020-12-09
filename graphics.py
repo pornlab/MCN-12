@@ -22,7 +22,7 @@ class Graphics:
     def load_image(self, image_path=os.path.join('images', 'room_0', 'wall_0', '0.png')):
         try:
             img = pygame.image.load(image_path)
-            if os.path.join('images', 'room_5') in image_path:
+            if image_path == os.path.join('images', 'room_5'):
                 if not self.video_playing:
                     os.system('killall omxplayer.bin')
                     self.video_playing = False
