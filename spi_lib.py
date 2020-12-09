@@ -80,7 +80,7 @@ class SPI:
                 self.out[i] = self.wall_data[i] + self.floor_data[i]
             self.out[0] = self.room_data
 
-        if self.data[0] > 0:
+        if 0 < self.data[0] < 4:
             self.timeout = self.get_timeout()
             self.room_data = self.data[0]
             self.out[0] = self.room_data
