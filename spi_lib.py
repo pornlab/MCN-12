@@ -80,7 +80,7 @@ class SPI:
                 self.out[i] = self.wall_data[i] + self.floor_data[i]
             self.out[0] = self.room_data
 
-        if 0 < self.data[0] < 4:
+        if self.data[0] > 0:
             self.timeout = self.get_timeout()
             self.room_data = self.data[0]
             self.out[0] = self.room_data
@@ -95,6 +95,11 @@ class SPI:
             self.room = 0
             self.out = [0] * self.modules
 
-        self.image_path = os.path.join('images', 'room_{}'.format(self.room), 'wall_{}'.format(self.wall),
+        if self.room != 5:
+            self.image_path = os.path.join('images', 'room_{}'.format(self.room), 'wall_{}'.format(self.wall),
                                        '{}.png'.format(self.floor))
-        return self.image_path
+            return self.image_path
+        else:
+            self.image_path = os.path.join('images', 'room_{}'.format(self.room))
+            return self.image_path
+
