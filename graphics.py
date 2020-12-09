@@ -27,8 +27,10 @@ class Graphics:
                     omxc = Popen(['omxplayer', '-o',  'local', '--loop', self.path_1])
                     self.video_playing = True
                 img = None
-            elif image_path == os.path.join('images', 'room_5', 'wall_0', '0.png'):
+            elif image_path == os.path.join('images', 'room_5'):
                 if not self.video_playing:
+                    os.system('killall omxplayer.bin')
+                    self.video_playing = False
                     omxc = Popen(['omxplayer', '-o',  'local', '--loop', self.path_2])
                     self.video_playing = True
                 img = None
