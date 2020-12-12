@@ -15,17 +15,15 @@ class Graphics:
         self.scr_h = self.display.Info().current_h
         self.screen = self.display.set_mode(size=[self.scr_w, self.scr_h])  # , flags=pygame.FULLSCREEN, display=0)
         self.screen.fill([0, 0, 0])
-        print(pygame.image.get_extended())
         self.path_1 = "videos/1080_60fps.mp4"
         self.path_2 = "videos/button.mp4"
 
 
     def load_image(self, image_path=os.path.join('images', 'room_0', 'wall_0', '0.png')):
         try:
-            print('in function...', image_path)
             if image_path == os.path.join('images', 'room_5'):
                 if self.video_playing:
-                    os.system('killall omxplayer*')
+                    os.system('killall omxplayer')
                 img = pygame.image.load(os.path.join('images', 'room_5', 'wall_0', '0.png'))
                 self.screen.blit(img, [0, 0])
                 pygame.display.flip()
@@ -38,7 +36,7 @@ class Graphics:
                     self.video_playing = True
                 img = None
             else:
-                os.system('killall omxplayer*')
+                os.system('killall omxplayer')
                 self.video_playing = False
                 img = pygame.image.load(image_path)
 

@@ -23,5 +23,4 @@ class Routine:
         while not self.done:
             self.done = self.graph.load_image(self.image)
             if self.image != 0:
-                print(self.image)
                 pass
