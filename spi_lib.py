@@ -29,6 +29,7 @@ class SPI:
         self.floor = 0
         self.room = 0
         self.out = [0] * self.modules
+        self.video_conf = False
         self.timeout = self.get_timeout()
         self.image_path = os.path.join('images', 'room_0', 'wall_0', '0.png')
 
@@ -86,7 +87,7 @@ class SPI:
             self.out[0] = self.room_data
             self.room = int(1 + math.log2(self.room_data))
 
-        if self.timeout == 0:
+        if self.timeout == 0 and not self.video_conf :
             self.room_data = 0
             self.floor_data = [0] * self.modules
             self.wall_data = [0] * self.modules
@@ -96,12 +97,13 @@ class SPI:
             self.out = [0] * self.modules
 
         if self.room != 5:
+            self.video_conf = False
             self.image_path = os.path.join('images', 'room_{}'.format(self.room), 'wall_{}'.format(self.wall),
                                        '{}.png'.format(self.floor))
             return self.image_path
         else:
             self.image_path = os.path.join('images', 'room_{}'.format(self.room))
-            self.timeout = 1
+            self.video_conf = True
             fake_out = [0] * self.modules
             fake_out[self.modules - 1] = 2**5
             self.spi.writebytes(fake_out)
