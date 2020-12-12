@@ -23,7 +23,7 @@ class Graphics:
         try:
             if image_path == os.path.join('images', 'room_5'):
                 if self.video_playing:
-                    os.system('killall -s 9 omxplayer')
+                    os.system('killall omxplayer.bin')
                 img = pygame.image.load(os.path.join('images', 'room_5', 'wall_0', '0.png'))
                 self.screen.blit(img, [0, 0])
                 pygame.display.flip()
@@ -36,7 +36,7 @@ class Graphics:
                     self.video_playing = True
                 img = None
             else:
-                os.system('killall -s 9 omxplayer')
+                os.system('killall omxplayer.bin')
                 self.video_playing = False
                 img = pygame.image.load(image_path)
 
