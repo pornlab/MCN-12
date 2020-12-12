@@ -63,6 +63,3 @@ class Graphics:
                 pygame.quit()
                 return True
         return False
-
-# x = threading.Thread(target=Popen, args=(['omxplayer', '-o',  'local', self.path_2], ))
-#                 x.start()
