@@ -26,8 +26,7 @@ class Graphics:
             if image_path == os.path.join('images', 'room_5'):
                 if self.video_playing:
                     os.system('killall omxplayer.bin')
-                x = threading.Thread(target=Popen, args=(['omxplayer', '-o',  'local', self.path_2], ))
-                x.start()
+                os.system('omxplayer -o local ' + self.path_2)
                 self.video_playing = False
                 img = os.path.join('images', 'room_0', 'wall_0', '0.png')
             elif image_path == os.path.join('images', 'room_0', 'wall_0', '0.png'):
@@ -58,3 +57,6 @@ class Graphics:
                 pygame.quit()
                 return True
         return False
+
+# x = threading.Thread(target=Popen, args=(['omxplayer', '-o',  'local', self.path_2], ))
+#                 x.start()
