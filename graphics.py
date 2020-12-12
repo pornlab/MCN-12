@@ -22,7 +22,7 @@ class Graphics:
     def load_image(self, image_path=os.path.join('images', 'room_0', 'wall_0', '0.png')):
         try:
             img = pygame.image.load(image_path)
-            print('in function...')
+            print('in function...', image_path)
             if image_path == os.path.join('images', 'room_5'):
                 omxc = Popen(['omxplayer', '-o',  'local', '--loop', self.path_2])
                 self.video_playing = True
