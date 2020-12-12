@@ -1,6 +1,7 @@
 import pygame
 import os
 import sys
+import threading
 from subprocess import Popen
 
 
@@ -26,7 +27,9 @@ class Graphics:
             print('in function...', image_path)
             if image_path == os.path.join('images', 'room_5'):
                 if self.video_playing:
-                    os.system('killall omxplayer.bin')
+                    x = threading.Thread(target=os.system, args=('killall omxplayer.bin', ))
+                    x.start()
+                    #os.system('killall omxplayer.bin')
                     self.video_playing = False
                 omxc = Popen(['omxplayer', '-o',  'local', self.path_2])
                 img = None
