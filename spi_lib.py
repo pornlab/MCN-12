@@ -94,11 +94,11 @@ class SPI:
             self.wall = 0
             self.floor = 0
             self.room = 0
-            if not self.video_conf:
-                self.out = [0] * self.modules
-            else:
-                self.out = [0] * self.modules
-                self.out[0] = 2**5
+            # if not self.video_conf:
+            #     self.out = [0] * self.modules
+            # else:
+            #     self.out = [0] * self.modules
+            #     self.out[0] = 2**5
 
         if self.room != 5:
             self.video_conf = False
@@ -108,8 +108,5 @@ class SPI:
         else:
             self.image_path = os.path.join('images', 'room_{}'.format(self.room))
             self.video_conf = True
-            #fake_out = [0] * self.modules
-            #fake_out[self.modules - 1] = 2**5
-            #self.spi.writebytes(fake_out)
             return self.image_path
 
