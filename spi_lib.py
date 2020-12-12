@@ -101,6 +101,6 @@ class SPI:
             return self.image_path
         else:
             self.image_path = os.path.join('images', 'room_{}'.format(self.room))
-            self.timeout = 1
+            self.timeout = 10
             return self.image_path
 
