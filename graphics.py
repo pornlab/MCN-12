@@ -27,7 +27,7 @@ class Graphics:
                 img = pygame.image.load(os.path.join('images', 'room_5', 'wall_0', '0.png'))
                 self.screen.blit(img, [0, 0])
                 pygame.display.flip()
-                os.system('omxplayer -o local ' + self.path_2)
+                omxc = Popen(['omxplayer', '-o',  'local', self.path_2])
                 self.video_playing = False
                 img = os.path.join('images', 'room_0', 'wall_0', '0.png')
             elif image_path == os.path.join('images', 'room_0', 'wall_0', '0.png'):
