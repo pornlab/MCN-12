@@ -101,5 +101,7 @@ class SPI:
             return self.image_path
         else:
             self.image_path = os.path.join('images', 'room_{}'.format(self.room))
+            self.spi.writebytes(self.out[::-1])
+            self.out = [0] * self.modules
             return self.image_path
 
