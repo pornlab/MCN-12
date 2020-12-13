@@ -37,9 +37,6 @@ class Graphics:
                 print('Video playing = ', self.video_playing)
                 if not(self.video_playing):
                     os.system('killall omxplayer.bin')
-                    img = pygame.image.load(os.path.join('images', 'room_0', 'wall_0', '0.png'))
-                    self.screen.blit(img, [0, 0])
-                    pygame.display.flip()
                     omxc = Popen(['omxplayer', '-o',  'local', '--loop', self.path_1])
                     self.video_playing = True
                 img = None

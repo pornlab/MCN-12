@@ -3,6 +3,8 @@ import math
 import RPi.GPIO as IO
 import time
 import os
+from subprocess import Popen
+
 
 
 class SPI:
@@ -105,6 +107,7 @@ class SPI:
             self.image_path = os.path.join('images', 'room_0', 'wall_0', '0.png')
             self.video_conf = False
             print(1, self.image_path)
+            omxc = Popen(['omxplayer', '-o', 'local', '--loop', "videos/1080_60fps.mp4"])
             return self.image_path
 
         if self.room != 5:
