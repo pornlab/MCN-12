@@ -34,8 +34,8 @@ class Graphics:
                 img = None
 
             elif image_path == os.path.join('images', 'room_0', 'wall_0', '0.png'):
-                if not(self.video_playing):
-                    os.system('killall omxplayer.bin')
+                #if not(self.video_playing):
+                #    os.system('killall omxplayer.bin')
                 omxc = Popen(['omxplayer', '-o',  'local', '--loop', self.path_1])
                 self.video_playing = True
                 img = pygame.image.load(os.path.join('images', 'room_0', 'wall_0', '0.png'))
