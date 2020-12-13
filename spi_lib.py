@@ -104,7 +104,6 @@ class SPI:
                                        '{}.png'.format(self.floor))
             return self.image_path
         else:
-            self.spi.writebytes(self.out[::-1])
             self.image_path = os.path.join('images', 'room_{}'.format(self.room))
             self.video_conf = True
             return self.image_path
