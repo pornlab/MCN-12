@@ -35,10 +35,11 @@ class Graphics:
 
             elif image_path == os.path.join('images', 'room_0', 'wall_0', '0.png'):
                 print('Video playing = ', self.video_playing)
-                if not(self.video_playing):
-                    os.system('killall omxplayer.bin')
-                    omxc = Popen(['omxplayer', '-o',  'local', '--loop', self.path_1])
-                    self.video_playing = True
+                os.system('killall omxplayer.bin')
+                omxc = Popen(['omxplayer', '-o',  'local', '--loop', self.path_1])
+                #if not(self.video_playing):
+
+                self.video_playing = True
                 img = None
 
             else:
