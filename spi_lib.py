@@ -96,7 +96,7 @@ class SPI:
             self.wall = 0
             self.floor = 0
             self.room = 0
-            self.out = [0] * self.modules
+            #self.out = [0] * self.modules
             if not self.video_conf:
                 self.out = [0] * self.modules
             else:
