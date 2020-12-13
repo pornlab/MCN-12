@@ -14,7 +14,7 @@ class Graphics:
         self.video_conf = False
         self.scr_w = self.display.Info().current_w
         self.scr_h = self.display.Info().current_h
-        self.screen = self.display.set_mode(size=[self.scr_w, self.scr_h], flags=pygame.FULLSCREEN, display=0)
+        self.screen = self.display.set_mode(size=[self.scr_w, self.scr_h])#, flags=pygame.FULLSCREEN, display=0)
         self.screen.fill([0, 0, 0])
         self.path_1 = "videos/1080_60fps.mp4"
         self.path_2 = "videos/button.mp4"
