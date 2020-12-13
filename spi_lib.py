@@ -89,7 +89,7 @@ class SPI:
             self.out[0] = self.room_data
             self.room = int(1 + math.log2(self.room_data))
 
-        if self.timeout == 0:
+        if self.timeout <= 0:
             self.room_data = 0
             self.floor_data = [0] * self.modules
             self.wall_data = [0] * self.modules
@@ -110,9 +110,7 @@ class SPI:
                                        '{}.png'.format(self.floor))
             return self.image_path
         else:
-            conf_out = [0] * self.modules
-            conf_out[self.modules - 1] = 2**5
-            self.spi.writebytes(conf_out)
+            self.timeout = 0
             self.image_path = os.path.join('images', 'room_{}'.format(self.room))
             self.video_conf = True
             return self.image_path
