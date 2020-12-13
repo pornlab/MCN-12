@@ -10,4 +10,4 @@
 'floor': 12,
 'wall': 12,
 'room': 3,
-'timeout': 120}
+'timeout': 10}
