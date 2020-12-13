@@ -103,23 +103,19 @@ class SPI:
             #     self.out = [0] * self.modules
             #     self.out[0] = 2**5
 
-        if self.video_conf:
-            self.image_path = os.path.join('images', 'room_0', 'wall_0', '0.png')
-            self.video_conf = False
-            print(1, self.image_path)
-            omxc = Popen(['omxplayer', '-o', 'local', '--loop', "videos/1080_60fps.mp4"])
-            return self.image_path
+        # if self.video_conf:
+        #     self.image_path = os.path.join('images', 'room_0', 'wall_0', '0.png')
+        #     self.video_conf = False
+        #     return self.image_path
 
         if self.room != 5:
             self.video_conf = False
             #os.system('killall omxplayer.bin')
             self.image_path = os.path.join('images', 'room_{}'.format(self.room), 'wall_{}'.format(self.wall),
                                        '{}.png'.format(self.floor))
-            print(2, self.image_path)
             return self.image_path
         else:
             self.image_path = os.path.join('images', 'room_{}'.format(self.room))
             self.video_conf = True
-            print(3, self.image_path)
             return self.image_path
 
