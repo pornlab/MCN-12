@@ -104,6 +104,8 @@ class SPI:
                                        '{}.png'.format(self.floor))
             return self.image_path
         else:
+            if not self.video_conf:
+                self.timeout = 2
             self.image_path = os.path.join('images', 'room_{}'.format(self.room))
             self.video_conf = True
             return self.image_path
