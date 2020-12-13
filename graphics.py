@@ -22,6 +22,7 @@ class Graphics:
 
     def load_image(self, image_path=os.path.join('images', 'room_0', 'wall_0', '0.png')):
         try:
+            print(4, image_path)
             if image_path == os.path.join('images', 'room_5'):
                 if self.video_playing:
                     os.system('killall omxplayer.bin')
