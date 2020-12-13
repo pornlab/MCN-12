@@ -103,12 +103,14 @@ class SPI:
 
         if self.room != 5:
             self.video_conf = False
+            os.system('killall omxplayer.bin')
             self.image_path = os.path.join('images', 'room_{}'.format(self.room), 'wall_{}'.format(self.wall),
                                        '{}.png'.format(self.floor))
             return self.image_path
         else:
             if self.video_conf:
                 self.image_path = os.path.join('images', 'room_0', 'wall_0', '0.png')
+                self.video_conf = False
                 return self.image_path
             self.image_path = os.path.join('images', 'room_{}'.format(self.room))
             self.video_conf = True
