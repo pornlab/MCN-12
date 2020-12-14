@@ -20,25 +20,25 @@ class Graphics:
         self.path_2 = "videos/button.mp4"
 
 
-    def load_image(self, image_path=os.path.join('images', 'room_0', 'wall_0', '0.png')):
+    def load_image(self, image_path=os.path.join('images', 'room_0', 'wall_0', '0.jpg')):
         try:
             print(image_path)
             if image_path == os.path.join('images', 'room_5'):
                 if self.video_playing:
                     os.system('killall omxplayer.bin')
-                img = pygame.image.load(os.path.join('images', 'room_5', 'wall_0', '0.png'))
+                img = pygame.image.load(os.path.join('images', 'room_5', 'wall_0', '0.jpg'))
                 self.screen.blit(img, [0, 0])
                 pygame.display.flip()
                 omxc = Popen(['omxplayer', '-o',  'local', self.path_2])
                 self.video_playing = False
                 img = None
 
-            elif image_path == os.path.join('images', 'room_0', 'wall_0', '0.png'):
+            elif image_path == os.path.join('images', 'room_0', 'wall_0', '0.jpg'):
                 #if not(self.video_playing):
                 #    os.system('killall omxplayer.bin')
                 omxc = Popen(['omxplayer', '-o',  'local', '--loop', self.path_1])
                 self.video_playing = True
-                img = pygame.image.load(os.path.join('images', 'room_0', 'wall_0', '0.png'))
+                img = pygame.image.load(os.path.join('images', 'room_0', 'wall_0', '0.jpg'))
                 self.screen.blit(img, [0, 0])
                 pygame.display.flip()
 

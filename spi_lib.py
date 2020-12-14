@@ -33,7 +33,7 @@ class SPI:
         self.out = [0] * self.modules
         self.video_conf = False
         self.timeout = self.get_timeout()
-        self.image_path = os.path.join('images', 'room_0', 'wall_0', '0.png')
+        self.image_path = os.path.join('images', 'room_0', 'wall_0', '0.jpg')
 
     def wall_num(self):
         sum = 0
@@ -101,7 +101,7 @@ class SPI:
         if self.room != 5:
             self.video_conf = False
             self.image_path = os.path.join('images', 'room_{}'.format(self.room), 'wall_{}'.format(self.wall),
-                                       '{}.png'.format(self.floor))
+                                       '{}.jpg'.format(self.floor))
             return self.image_path
         else:
             if not self.video_conf:
